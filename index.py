@@ -49,10 +49,16 @@ def save():
     tagData = tagBox.get()
     countyData = countyBox.get()
     stateData = stateBox.get()
+    
+    try:
 
-    ##cursorObj.execute("INSERT INTO weaponLog VALUE("+ nameData+","+ departmentData + "," + cottageData + "," + shiftData + "," + licenseData + "," +  experationData + "," + serialData + "," + makeData + "," + caliberData + "," + tagData + "," + countyData + "," + stateData + ")")
-    cursorObj.execute("INSERT INTO weaponLog (employeeName, department, cottage, shift, licenseNumber, expDate, weaponSerialNumber, weaponMake, caliber, tagNumber, county, tagState) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    (nameData, departmentData, cottageData, shiftData, licenseData, experationData, serialData, makeData, caliberData, tagData, countyData, stateData))
+        ##cursorObj.execute("INSERT INTO weaponLog VALUE("+ nameData+","+ departmentData + "," + cottageData + "," + shiftData + "," + licenseData + "," +  experationData + "," + serialData + "," + makeData + "," + caliberData + "," + tagData + "," + countyData + "," + stateData + ")")
+        cursorObj.execute("INSERT INTO weaponLog (employeeName, department, cottage, shift, licenseNumber, expDate, weaponSerialNumber, weaponMake, caliber, tagNumber, county, tagState) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (nameData, departmentData, cottageData, shiftData, licenseData, experationData, serialData, makeData, caliberData, tagData, countyData, stateData))
+        con.commit()
+    except Error:
+
+        print("Something went wrong")
 
 gui = tk.Tk()
 gui.title("Hudspeth Regional Center Campus Police Weapon Log")
@@ -103,7 +109,7 @@ countyLbl = tk.Label(gui, text="County: ", pady=10)
 countyBox = tk.Entry(gui)
 stateLbl = tk.Label(gui, text="State: ", pady=10)
 stateBox = tk.Entry(gui)
-testBtn = tk.Button(gui, text="Test Connection", command=test)
+testBtn = tk.Button(gui, text="Test Connection", command=testCon)
 closeBtn = tk.Button(gui, text="Exit", command=exit)
 saveBtn = tk.Button(gui, text="Save", command=save)
 
