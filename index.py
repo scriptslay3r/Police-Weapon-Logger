@@ -1,21 +1,59 @@
 import tkinter as tk
+from tkinter import messagebox
 import os
+import sqlite3
+from sqlite3 import Error
+
+
+def exit():
+    gui.destroy()
+
+def testCon():
+
+    try:
+
+        con = sqlite3.connect('policedb.db')
+
+        message = "Connection is established: Database is policedb.db"
+        title = "Connection Successful"
+
+        tk.messagebox.showinfo(title= title, message= message)
+
+    except Error:
+
+        print(Error)
 
 
 
+con = sqlite3.connect('myTestDB.db')
+cursorObj = con.cursor()
+cursorObj.execute("CREATE TABLE weaponLog (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumberTEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county	TEXT, tagState	TEXT)")
 
 
 gui = tk.Tk()
 gui.title("Hudspeth Regional Center Campus Police Weapon Log")
 gui.geometry("")
-txbx = tk.Text(gui)
+
 
 photo = tk.PhotoImage(file = "logo150.gif")
+
+"""Top section of gui"""
+
+menubar = tk.Menu(gui)
+optionmenu = tk.Menu(menubar, tearoff=0)
+optionmenu.add_command(label="Search") ###Add Search funtion later
+optionmenu.add_command(label="Test Connection", command = testCon)
+optionmenu.add_command(label="Exit", command=gui.quit)
+#### Add a 'new' button which deletes all the text. 
+optionmenu.add_cascade(label="Menu", menu=optionmenu)
 
 
 header = tk.Label(gui, text = "Hudspeth Regional Center \nWeapon Information", font=("Helvetica", 20))
 logo = tk.Label(gui, image=photo, padx=25)
 logo.photo = photo
+
+"""Main section of gui"""
+
 nameLbl = tk.Label(gui, text="Name: ", pady=10)
 nameBox = tk.Entry(gui)
 departmentLbl = tk.Label(gui, text="Department: ", pady=10)
@@ -40,8 +78,12 @@ countyLbl = tk.Label(gui, text="County: ", pady=10)
 countyBox = tk.Entry(gui)
 stateLbl = tk.Label(gui, text="State: ", pady=10)
 stateBox = tk.Entry(gui)
-pdfBtn = tk.Button(gui, text="Save as PDF", command=pdf)
+testBtn = tk.Button(gui, text="Test Connection", command=testCon)
+closeBtn = tk.Button(gui, text="Exit", command=exit)
 
+
+
+"""Grid manager, where I place everything"""
 
 logo.grid(column="1", row="0")
 header.grid(column="3", row="0", columnspan="2")
@@ -70,5 +112,25 @@ countyLbl.grid(column="2", row="8")
 countyBox.grid(column="3", row="8")
 stateLbl.grid(column="0", row="9")
 stateBox.grid(column="1",row="9")
-pdfBtn.grid(column="3", row="10")
+testBtn.grid(column="3", row="10")
+
+
+nameData = nameBox.get()
+departmentData = departmentBox.get()
+cottageData = cottageBox.get()
+shiftData = shiftBox.get()
+licenseData = licenseBox.get()
+experationData = experationBox.get()
+serialData = serialBox.get()
+makeData = makeBox.get()
+caliberData = caliberBox.get()
+tagData = tagBox.get()
+countyData = countyBox.get()
+stateData = stateBox.get()
+
+
+
+
+
+
 gui.mainloop()
