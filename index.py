@@ -4,6 +4,8 @@ import os
 import sqlite3
 from sqlite3 import Error
 
+
+
 def exit():
     gui.destroy()
 
@@ -107,7 +109,7 @@ stateBox = tk.Entry(gui)
 testBtn = tk.Button(gui, text="Test Connection", command=testCon)
 closeBtn = tk.Button(gui, text="Exit", command=exit)
 saveBtn = tk.Button(gui, text="Save", command=save)
-
+searchBtn = tk.Button(gui, text= "Seach")
 
 
 """Grid manager, where I place everything"""
@@ -142,6 +144,7 @@ stateLbl.grid(column="0", row="9")
 stateBox.grid(column="1",row="9")
 testBtn.grid(column="3", row="10")
 saveBtn.grid(column="4", row="10")
+searchBtn.grid(column="2", row="10")
 
 
 gui.mainloop()
