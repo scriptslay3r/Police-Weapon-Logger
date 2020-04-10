@@ -4,6 +4,9 @@ import os
 import sqlite3
 from sqlite3 import Error
 
+def test():
+    nameData = nameBox.get()
+    print(nameData)
 
 def exit():
     gui.destroy()
@@ -29,10 +32,23 @@ con = sqlite3.connect('policedb.db')
 cursorObj = con.cursor()
 #cursorObj.execute("CREATE TABLE weaponLog (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumberTEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county	TEXT, tagState	TEXT)")
 ### Trying it without the id autoincrement
-cursorObj.execute("CREATE TABLE weaponLog (employeeName TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumber TEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county TEXT, tagState TEXT)")
+#cursorObj.execute("CREATE TABLE weaponLog (employeeName TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumber TEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county TEXT, tagState TEXT)")
 
 
 def save():
+
+    nameData = nameBox.get()
+    departmentData = departmentBox.get()
+    cottageData = cottageBox.get()
+    shiftData = shiftBox.get()
+    licenseData = licenseBox.get()
+    experationData = experationBox.get()
+    serialData = serialBox.get()
+    makeData = makeBox.get()
+    caliberData = caliberBox.get()
+    tagData = tagBox.get()
+    countyData = countyBox.get()
+    stateData = stateBox.get()
 
     ##cursorObj.execute("INSERT INTO weaponLog VALUE("+ nameData+","+ departmentData + "," + cottageData + "," + shiftData + "," + licenseData + "," +  experationData + "," + serialData + "," + makeData + "," + caliberData + "," + tagData + "," + countyData + "," + stateData + ")")
     cursorObj.execute("INSERT INTO weaponLog (employeeName, department, cottage, shift, licenseNumber, expDate, weaponSerialNumber, weaponMake, caliber, tagNumber, county, tagState) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -87,7 +103,7 @@ countyLbl = tk.Label(gui, text="County: ", pady=10)
 countyBox = tk.Entry(gui)
 stateLbl = tk.Label(gui, text="State: ", pady=10)
 stateBox = tk.Entry(gui)
-testBtn = tk.Button(gui, text="Test Connection", command=testCon)
+testBtn = tk.Button(gui, text="Test Connection", command=test)
 closeBtn = tk.Button(gui, text="Exit", command=exit)
 saveBtn = tk.Button(gui, text="Save", command=save)
 
@@ -100,6 +116,7 @@ header.grid(column="3", row="0", columnspan="2")
 
 nameLbl.grid(column="0", row="3")
 nameBox.grid(column="1",row="3")
+nameBox.focus_set()
 departmentLbl.grid(column="0", row="4")
 departmentBox.grid(column="1", row="4")
 cottageLbl.grid(column="2", row="4")
@@ -124,24 +141,6 @@ stateLbl.grid(column="0", row="9")
 stateBox.grid(column="1",row="9")
 testBtn.grid(column="3", row="10")
 saveBtn.grid(column="4", row="10")
-
-
-nameData = nameBox.get()
-departmentData = departmentBox.get()
-cottageData = cottageBox.get()
-shiftData = shiftBox.get()
-licenseData = licenseBox.get()
-experationData = experationBox.get()
-serialData = serialBox.get()
-makeData = makeBox.get()
-caliberData = caliberBox.get()
-tagData = tagBox.get()
-countyData = countyBox.get()
-stateData = stateBox.get()
-
-
-
-
 
 
 gui.mainloop()
