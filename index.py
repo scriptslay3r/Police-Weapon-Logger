@@ -1,14 +1,8 @@
 import tkinter as tk
 import os
-import pdfkit
 
 
-def pdf():
-    x = "my.pdf"
-    content = txbx.get("0.0", tk.END)
-    pdfkit.from_string(content, x)
-    print("PDF created :)")
-    os.startfile("my.pdf")
+
 
 
 gui = tk.Tk()
