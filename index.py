@@ -25,10 +25,18 @@ def testCon():
 
 
 
-con = sqlite3.connect('myTestDB.db')
+con = sqlite3.connect('policedb.db')
 cursorObj = con.cursor()
-cursorObj.execute("CREATE TABLE weaponLog (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumberTEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county	TEXT, tagState	TEXT)")
+#cursorObj.execute("CREATE TABLE weaponLog (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumberTEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county	TEXT, tagState	TEXT)")
+### Trying it without the id autoincrement
+cursorObj.execute("CREATE TABLE weaponLog (employeeName TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumber TEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county TEXT, tagState TEXT)")
 
+
+def save():
+
+    ##cursorObj.execute("INSERT INTO weaponLog VALUE("+ nameData+","+ departmentData + "," + cottageData + "," + shiftData + "," + licenseData + "," +  experationData + "," + serialData + "," + makeData + "," + caliberData + "," + tagData + "," + countyData + "," + stateData + ")")
+    cursorObj.execute("INSERT INTO weaponLog (employeeName, department, cottage, shift, licenseNumber, expDate, weaponSerialNumber, weaponMake, caliber, tagNumber, county, tagState) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    (nameData, departmentData, cottageData, shiftData, licenseData, experationData, serialData, makeData, caliberData, tagData, countyData, stateData))
 
 gui = tk.Tk()
 gui.title("Hudspeth Regional Center Campus Police Weapon Log")
@@ -46,6 +54,7 @@ optionmenu.add_command(label="Test Connection", command = testCon)
 optionmenu.add_command(label="Exit", command=gui.quit)
 #### Add a 'new' button which deletes all the text. 
 optionmenu.add_cascade(label="Menu", menu=optionmenu)
+gui.config(menu=menubar)
 
 
 header = tk.Label(gui, text = "Hudspeth Regional Center \nWeapon Information", font=("Helvetica", 20))
@@ -80,6 +89,7 @@ stateLbl = tk.Label(gui, text="State: ", pady=10)
 stateBox = tk.Entry(gui)
 testBtn = tk.Button(gui, text="Test Connection", command=testCon)
 closeBtn = tk.Button(gui, text="Exit", command=exit)
+saveBtn = tk.Button(gui, text="Save", command=save)
 
 
 
@@ -113,6 +123,7 @@ countyBox.grid(column="3", row="8")
 stateLbl.grid(column="0", row="9")
 stateBox.grid(column="1",row="9")
 testBtn.grid(column="3", row="10")
+saveBtn.grid(column="4", row="10")
 
 
 nameData = nameBox.get()
