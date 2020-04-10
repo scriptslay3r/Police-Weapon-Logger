@@ -4,10 +4,6 @@ import os
 import sqlite3
 from sqlite3 import Error
 
-def test():
-    nameData = nameBox.get()
-    print(nameData)
-
 def exit():
     gui.destroy()
 
@@ -32,8 +28,7 @@ con = sqlite3.connect('policedb.db')
 cursorObj = con.cursor()
 #cursorObj.execute("CREATE TABLE weaponLog (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumberTEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county	TEXT, tagState	TEXT)")
 ### Trying it without the id autoincrement
-#cursorObj.execute("CREATE TABLE weaponLog (employeeName TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumber TEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county TEXT, tagState TEXT)")
-
+#cursorObj.execute("CREATE TABLE weaponLog (employeeName TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumber TEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county TEXT, tagState TEXT)"
 
 def save():
 
@@ -71,7 +66,7 @@ photo = tk.PhotoImage(file = "logo150.gif")
 
 menubar = tk.Menu(gui)
 optionmenu = tk.Menu(menubar, tearoff=0)
-optionmenu.add_command(label="Search") ###Add Search funtion later
+optionmenu.add_command(label="Search") ###Add Search function later
 optionmenu.add_command(label="Test Connection", command = testCon)
 optionmenu.add_command(label="Exit", command=gui.quit)
 #### Add a 'new' button which deletes all the text. 
