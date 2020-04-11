@@ -30,7 +30,7 @@ con = sqlite3.connect('policedb.db')
 cursorObj = con.cursor()
 #cursorObj.execute("CREATE TABLE weaponLog (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumberTEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county	TEXT, tagState	TEXT)")
 ### Trying it without the id autoincrement
-#cursorObj.execute("CREATE TABLE weaponLog (employeeName TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumber TEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county TEXT, tagState TEXT)"
+#cursorObj.execute("CREATE TABLE weaponLog (employeeName TEXT, department TEXT, cottage TEXT, shift TEXT, licenseNumber TEXT, expDate TEXT, weaponSerialNumber TEXT, weaponMake TEXT, caliber TEXT, tagNumber TEXT, county TEXT, tagState TEXT)")
 
 def save():
 
